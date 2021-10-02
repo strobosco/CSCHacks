@@ -1,8 +1,7 @@
 # CSC Hacks Sample Project Repo
 
-## Project Description
 
-Our project is centered around a clustering algorithm for songs that feeds the user recommendations for what to listen using previous likes and listening times as a starting point. The approach we currently think of using is a K-Means clustering algorithm that will let the user choose the number of centroids to use.
+## Project Description
 
 
 ## Team Information
@@ -12,3 +11,9 @@ Niccolo Nobili
 * NIN49@pitt.edu
 * NiccoloNobili on CSC Discord
 * Check out my [personal website](https://niccolonobili.netlify.app/) or [LinkedIn](https://www.linkedin.com/in/niccolonobili/)
+
+Amaan Kazi
+* Pitt Bioengineering, 2022
+* ank211@pitt.edu
+* AmaanKazi on CSC Discord
+* LinkedIn: https://www.linkedin.com/in/amaan-kazi-64a682191/
