@@ -17,3 +17,7 @@ Amaan Kazi
 * Pitt Bioengineering, 2022
 * ank211@pitt.edu
 * Check out my [LinkedIn](https://www.linkedin.com/in/amaan-kazi-64a682191)
+
+Pranay Jain
+* Pitt Bioengineering, 2022
+* Prj19@pitt.edu
