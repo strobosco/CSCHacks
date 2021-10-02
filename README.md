@@ -2,7 +2,7 @@
 
 ## Project Description
 
-Our project is centered around a clustering algorithm for songs that feeds the user recommendations for what to listen using previous likes and listening times as a starting point. The approach we currently think of using is a K-Means clustering algorithm that will let the user choose the number of centroids to use.
+Our project is centered around a clustering algorithm for songs that takes in songs users liked on Spotify and listening times and outputs a set of recommended playlists. The approach we are currently thinking of using is a K-Means clustering algorithm that will allow the user to choose the number of playlists they want.
 
 
 ## Team Information
