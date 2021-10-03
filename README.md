@@ -4,13 +4,24 @@
 
 Our project is centered around a clustering algorithm for songs that takes in songs users liked on Spotify and listening times and outputs a set of recommended playlists. The approach we are currently thinking of using is a K-Means clustering algorithm that will allow the user to choose the number of playlists they want.
 
+The challenges we anticipate in developing a properly functioning model are:
+
+  1. Data collection -> collecting a varied and representative dataset
+  2. Train our model using different "personalities" as to not overfit to particular audiences
+
+The skills we will need to learn are:
+
+  1. Exploratory Data Analysis using Pandas, Seaborn, and Matplotlib
+  2. Feature Extraction to improve accuracy and reduce training time
+  3. Model building
+  4. Key Performance Indicators to measure our progress
+
 
 ## Team Information
 
 Niccolo Nobili
 * Pitt CS, 2025
 * NIN49@pitt.edu
-* NiccoloNobili on CSC Discord
 * Check out my [personal website](https://niccolonobili.netlify.app/) or [LinkedIn](https://www.linkedin.com/in/niccolonobili/)
 
 Amaan Kazi
