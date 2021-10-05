@@ -32,3 +32,7 @@ Amaan Kazi
 Pranay Jain
 * Pitt Bioengineering, 2022
 * Prj19@pitt.edu
+
+Adam Powley
+* Pitt Computational Biology, 2024
+* ASP102@pitt.edu
