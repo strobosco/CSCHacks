@@ -33,3 +33,7 @@ Pranay Jain
 * Pitt Bioengineering, 2022
 * Prj19@pitt.edu
 * Check out my [Personal website](https://pranay99jain.wixsite.com/portfolio) or [LinkedIn](https://www.linkedin.com/in/pranayj7/)
+
+Adam Powley
+* Pitt Computational Biology, 2024
+* ASP102@pitt.edu
