@@ -1,11 +1,14 @@
+// To be removed
+entrypoint.py
+utils/
+
+// To always stay
 authorization.json
-
 .cache
-
 __pycache__
-
 .ipynb_checkpoints
 
-pranay_initial
 
+// TBD
+pranay_initial
 *.csv
