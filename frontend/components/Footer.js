@@ -6,18 +6,10 @@ const Footer = () => {
   return (
     <footer>
       <Box>
-        <Container
-          mt={8}
-          w="80%"
-          mx="auto"
-          bg="secondary"
-          color="white"
-          maxWidth="100%"
-          boxShadow="0 4px 8px 0 rgba(0, 0, 0, 0.5)"
-          borderRadius="8px"
-        >
+        <Container maxW="100%" width="80%" className="footer-container">
           <div className="intro-text">
             <h2>Connect with us!</h2>
+            <p>Reach out to us with any questions, concerns, or suggestions!</p>
           </div>
         </Container>
       </Box>
