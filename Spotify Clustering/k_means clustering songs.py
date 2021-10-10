@@ -10,6 +10,7 @@ import pandas as pd
 from sklearn.cluster import KMeans
 from sklearn import preprocessing
 import matplotlib.pyplot as plt
+from sklearn.decomposition import PCA
 
 # read dataset
 dataset = pd.read_csv("big_song_list.csv")
@@ -18,6 +19,11 @@ x = dataset.iloc[:, 5:15].values # column 5-15, not yet including duration or ti
 # scale values
 min_max_scaler = preprocessing.MinMaxScaler()
 x = min_max_scaler.fit_transform(x)
+
+#Perform PCA to reduce correlated variables to 95% of variance
+pca = PCA(0.95)
+x = pca.fit_transform(x)
+
 
 # elbow methood to graph different clusterings
 wcss = []
