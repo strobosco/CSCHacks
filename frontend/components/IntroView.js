@@ -4,18 +4,9 @@ import { Container, Flex, VStack } from "@chakra-ui/react";
 
 const IntroView = () => {
   return (
-    <Container mt={10} mx="auto" w="80%" maxW="100%">
+    <Container p={0} maxW="100%" width="80%" className="intro-container">
       <Flex>
-        <VStack
-          w="full"
-          h="full"
-          p={5}
-          spacing={10}
-          borderRadius="8px"
-          bg="secondary"
-          color="white"
-          alignItems="flex-start"
-        >
+        <VStack spacing={10} className="vertical-stack">
           <div className="intro-text">
             <h2>Spotify Playlist Clustering</h2>
             <p>
@@ -25,15 +16,7 @@ const IntroView = () => {
             </p>
           </div>
         </VStack>
-        <VStack
-          w="full"
-          h="full"
-          p={5}
-          spacing={10}
-          borderRadius="8px"
-          bg="secondary"
-          alignItems="flex-start"
-        ></VStack>
+        <VStack spacing={10} className="vertical-stack"></VStack>
       </Flex>
     </Container>
   );
