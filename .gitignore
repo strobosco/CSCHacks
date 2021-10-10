@@ -1,14 +1,9 @@
-// To be removed
-entrypoint.py
-utils/
-
-// To always stay
 authorization.json
+
 .cache
+
 __pycache__
+
 .ipynb_checkpoints
 
-
-// TBD
-pranay_initial
-*.csv
+.DS_Store
