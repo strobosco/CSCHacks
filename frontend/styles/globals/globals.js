@@ -27,6 +27,9 @@ export const globals = {
       pt: "8px",
     },
   },
+  ".left-stack": {
+    mr: 5,
+  },
   ".vertical-stack": {
     width: "full",
     height: "full",
