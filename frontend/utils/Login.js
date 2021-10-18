@@ -1,13 +1,12 @@
 const CLIENT_ID = "c5455611ee7e4367b44da7d1a6f3d15b";
 const AUTHORIZE_URL = "https://accounts.spotify.com/authorize";
 const REDIRECT_URL = "http://localhost:3000/redirect";
-const SCOPES = [
-  "user-read-email",
-  "user-library-read",
-  "user-library-modify",
-  "user-top-read",
-  "playlist-modify-public",
-];
+// const SCOPES = [
+//   "user-library-read",
+//   "user-library-modify",
+//   "playlist-modify-public",
+// ];
+const SCOPES = ["user-library-read", "playlist-read-private"];
 
 const SCOPES_URL_PARAM = SCOPES.join("%20");
 
