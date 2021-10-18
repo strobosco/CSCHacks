@@ -16,7 +16,7 @@ const getReturnedParamsFromSpotifyAuth = (hash) => {
 };
 
 const redirect = () => {
-  useEffect(() => {
+  useEffect(async () => {
     if (window.location.hash) {
       const { access_token, expires_in, token_type } =
         getReturnedParamsFromSpotifyAuth(window.location.hash);
@@ -35,6 +35,7 @@ const redirect = () => {
   return (
     <Flex className="nav-bar">
       <h1>Thanks for authorizing Spotify!</h1>
+      <br />
       <h2>You will be redirected shortly</h2>
     </Flex>
   );

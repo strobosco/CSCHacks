@@ -1,6 +1,7 @@
 import Head from "next/head";
 
 import { Flex, Heading, Button } from "@chakra-ui/react";
+
 import IntroView from "../components/IntroView";
 import Footer from "../components/Footer";
 import { FULL_AUTH_URL } from "../utils/LogIn";
