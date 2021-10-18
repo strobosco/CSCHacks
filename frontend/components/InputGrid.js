@@ -1,7 +1,5 @@
 import React from "react";
 
-import { useState } from "react";
-
 import {
   Input,
   FormControl,
@@ -11,29 +9,16 @@ import {
 } from "@chakra-ui/react";
 import { Formik, Form, Field } from "formik";
 
+import {
+  validateBaseName,
+  validateNumberOfPlaylists,
+} from "../utils/inputGridValidation";
+import SongsButton from "./SongsButton";
+
 const InputGrid = () => {
-  const validateNumberOfPlaylists = async (value) => {
-    let error;
-    if ((value === null) | undefined) {
-      error = "Number is required!";
-    } else if (value < 1) {
-      error = "Must create at least 1 playlist!";
-    }
-    return error;
-  };
-
-  const validateBaseName = async (value) => {
-    let error;
-    if ((value === null) | undefined) {
-      error = "Base name is required!";
-    } else if (value.length < 5) {
-      error = "Length must be more than 5 characters!";
-    }
-    return error;
-  };
-
   return (
     <>
+      <SongsButton />
       <Formik
         initialValues={{
           numberOfPlaylists: "",
