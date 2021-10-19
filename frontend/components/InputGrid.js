@@ -24,7 +24,7 @@ const InputGrid = () => {
   const [checkedItems, setCheckedItems] = useState([]);
   const [token, setToken] = useState("");
 
-  useEffect(() => {
+  useEffect(async () => {
     if (localStorage.getItem("accessToken")) {
       setToken(localStorage.getItem("accessToken"));
     }

@@ -11,6 +11,8 @@ const SCOPES = [
   "playlist-read-private",
   "playlist-read-public",
   "playlist-read-private",
+  "user-read-private",
+  "user-read-email",
 ];
 
 const SCOPES_URL_PARAM = SCOPES.join("%20");
