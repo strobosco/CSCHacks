@@ -11,7 +11,6 @@ const SongsButton = ({
   setPlaylists,
 }) => {
   const [token, setToken] = useState("");
-  const [songs, setSongs] = useState({});
 
   useEffect(() => {
     if (localStorage.getItem("accessToken")) {
@@ -30,17 +29,6 @@ const SongsButton = ({
     setPlaylists(res.data);
     // playlists?.items.map((item) => console.log(item.tracks));
     // !!!! PLAYLIST TRACKS ARE STORED IN SONGS.ITEMS.MAP
-  };
-
-  const getSongsFromPlaylist = async (url) => {
-    const PLAYLIST_URL = `https://api.spotify.com/v1/playlists/${url}/tracks`;
-    const res = await axios.get(PLAYLIST_URL, {
-      headers: {
-        Authorization: "Bearer " + token,
-      },
-    });
-    setSongs(...songs, res);
-    console.log(songs);
   };
 
   return (

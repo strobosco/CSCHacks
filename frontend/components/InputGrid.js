@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import {
   Input,
@@ -9,15 +9,26 @@ import {
 } from "@chakra-ui/react";
 import { Formik, Form, Field } from "formik";
 
+import axios from "axios";
+
 import {
   validateBaseName,
   validateNumberOfPlaylists,
 } from "../utils/inputGridValidation";
 import SongsButton from "./SongsButton";
 
+const BACKEND_URL = "/cluster";
+
 const InputGrid = () => {
-  const [playlists, setPlaylists] = useState({});
+  const [playlists, setPlaylists] = useState([]);
   const [checkedItems, setCheckedItems] = useState([]);
+  const [token, setToken] = useState("");
+
+  useEffect(() => {
+    if (localStorage.getItem("accessToken")) {
+      setToken(localStorage.getItem("accessToken"));
+    }
+  }, []);
   return (
     <>
       <SongsButton
@@ -31,13 +42,29 @@ const InputGrid = () => {
           numberOfPlaylists: "",
           baseName: "",
         }}
-        onSubmit={(values, actions) => {
-          setTimeout(() => {
-            console.log(values);
-            console.log(checkedItems);
-            // console.log(playlists);
-            actions.setSubmitting(false);
-          }, 500);
+        onSubmit={async (values, actions) => {
+          // console.log(values);
+          // console.log(checkedItems);
+          // console.log(playlists.items);
+          let selectedPlaylists = [];
+          checkedItems.map((item) => {
+            // console.log(item);
+            selectedPlaylists.push(playlists.items[item]);
+          });
+          // console.log(selectedPlaylists);
+          let res = await axios.post(BACKEND_URL, {
+            headers: {
+              "Content-Type": "application/json",
+            },
+            data: {
+              accessToken: token,
+              selectedPlaylists: JSON.stringify(selectedPlaylists),
+            },
+          });
+          if (!res) {
+            console.log("Error");
+          }
+          actions.setSubmitting(false);
         }}
       >
         {(props) => (
