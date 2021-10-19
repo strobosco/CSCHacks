@@ -1,0 +1,18 @@
+1. User goes to website
+
+2. User logs in
+
+3. User fetches playlist
+
+4. Data gets sent to backend:
+  songs (all features)
+  number of playlists
+  root name
+
+5. Backend does:
+  data cleaning
+  clustering
+  
+6. Backend returns data -> each song is associated to a centroid (playlist)
+
+7. Frontend displays new playlists (confirms if they wanna be created)
