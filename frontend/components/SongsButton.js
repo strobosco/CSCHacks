@@ -4,7 +4,12 @@ import axios from "axios";
 
 import { Container, Button, Flex, Checkbox } from "@chakra-ui/react";
 
-const SongsButton = ({ checkedItems, playlists, setPlaylists }) => {
+const SongsButton = ({
+  checkedItems,
+  setCheckedItems,
+  playlists,
+  setPlaylists,
+}) => {
   const [token, setToken] = useState("");
   const [songs, setSongs] = useState({});
 
@@ -54,7 +59,7 @@ const SongsButton = ({ checkedItems, playlists, setPlaylists }) => {
               <Checkbox
                 key={idx}
                 isChecked={checkedItems.indexOf(idx) != -1}
-                onChange={() => checkedItems.push(idx)}
+                onChange={() => setCheckedItems([...checkedItems, idx])}
               >
                 {item.name}
               </Checkbox>

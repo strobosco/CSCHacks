@@ -17,11 +17,12 @@ import SongsButton from "./SongsButton";
 
 const InputGrid = () => {
   const [playlists, setPlaylists] = useState({});
-  let checkedItems = [];
+  const [checkedItems, setCheckedItems] = useState([]);
   return (
     <>
       <SongsButton
         checkedItems={checkedItems}
+        setCheckedItems={setCheckedItems}
         playlists={playlists}
         setPlaylists={setPlaylists}
       />
