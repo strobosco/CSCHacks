@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import {
   Input,
@@ -16,9 +16,15 @@ import {
 import SongsButton from "./SongsButton";
 
 const InputGrid = () => {
+  const [playlists, setPlaylists] = useState({});
+  let checkedItems = [];
   return (
     <>
-      <SongsButton />
+      <SongsButton
+        checkedItems={checkedItems}
+        playlists={playlists}
+        setPlaylists={setPlaylists}
+      />
       <Formik
         initialValues={{
           numberOfPlaylists: "",
@@ -27,6 +33,8 @@ const InputGrid = () => {
         onSubmit={(values, actions) => {
           setTimeout(() => {
             console.log(values);
+            console.log(checkedItems);
+            // console.log(playlists);
             actions.setSubmitting(false);
           }, 500);
         }}

@@ -15,6 +15,10 @@ export const globals = {
     flexDirection: "row",
     color: "white",
   },
+  ".step-element": {
+    fontSize: "30px",
+    m: "5px",
+  },
   ".intro-text": {
     h2: {
       color: "white",

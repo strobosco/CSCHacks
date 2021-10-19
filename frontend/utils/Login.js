@@ -6,7 +6,12 @@ const REDIRECT_URL = "http://localhost:3000/redirect";
 //   "user-library-modify",
 //   "playlist-modify-public",
 // ];
-const SCOPES = ["user-library-read", "playlist-read-private"];
+const SCOPES = [
+  "user-library-read",
+  "playlist-read-private",
+  "playlist-read-public",
+  "playlist-read-private",
+];
 
 const SCOPES_URL_PARAM = SCOPES.join("%20");
 
