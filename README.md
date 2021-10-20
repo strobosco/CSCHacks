@@ -1,4 +1,4 @@
-# CSC Hacks Sample Project Repo
+# Spotify Playlist Creation & K-Means Clustering
 
 ## Project Description
 
