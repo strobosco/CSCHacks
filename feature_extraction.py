@@ -34,6 +34,7 @@ def feature_extraction(accessToken, selectedPlaylists):
     # Get uri of playlist
     all_playlists = sp.user_playlists(username)
     df_list = list()
+    not_added_playlists = list()
     for currentPlaylist in playlist_name:
         playlist_uri = ''
         
@@ -42,7 +43,8 @@ def feature_extraction(accessToken, selectedPlaylists):
                 playlist_uri = playlist['uri'] 
                 
         if playlist_uri == '':
-            print('Please make the playlist ', currentPlaylist, ' public')
+            not_added_playlists.append(currentPlaylist)
+            continue
         else:
             # Get info from uri
             username2 = playlist_uri.split(':')[1]
@@ -91,10 +93,12 @@ def feature_extraction(accessToken, selectedPlaylists):
     if len(df_list) > 1:
         concat_features_df = pd.concat(df_list)
         concat_features_df.reset_index(drop=True,inplace=True)
-        return concat_features_df
+        return concat_features_df, not_added_playlists
+    elif not df_list:
+        return '', not_added_playlists
     else:
-        return all_features_df       
+        return all_features_df, ''       
   
 if __name__ == "__main__":          
-    A = feature_extraction('',["Amaan's Playlist","Beach Party"])
+    A, not_added = feature_extraction('',["Beach Party"])
             
