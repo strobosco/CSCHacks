@@ -52,11 +52,18 @@ const InputGrid = () => {
             selectedPlaylists.push(playlists.items[item]);
           });
           // console.log(selectedPlaylists);
+          let user = await axios.get("https://api.spotify.com/v1/me", {
+            headers: {
+              Authorization: "Bearer " + token,
+            },
+          });
+          // console.log(user.data["display_name"]);
           let res = await axios.post(BACKEND_URL, {
             headers: {
               "Content-Type": "application/json",
             },
             data: {
+              username: user.data["display_name"],
               accessToken: token,
               selectedPlaylists: JSON.stringify(selectedPlaylists),
             },
