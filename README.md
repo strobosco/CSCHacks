@@ -23,6 +23,20 @@ The skills we will need to learn are:
   5. Full stack web development
 
 
+## Directory Structure
+
+```
++-- backend -> Flask API server
+| |
+| +-- server.py -> server entrypoint
+|
++-- frontend -> React frontend
+|
++-- EDA -> initial EDA file
+|
++-- Sptofy Clustering -> clustering testing/tuning
+```
+
 ## Team Information
 
 Niccolo Nobili
