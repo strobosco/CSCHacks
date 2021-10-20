@@ -12,10 +12,7 @@ import os
 import pandas as pd
 import numpy as np
 
-def feature_extraction(accessToken, selectedPlaylists):
-
-    # Folder the .py script is working from
-    # workspace_path = 'C:\\Users\\amaan\\OneDrive\\Hackathon'
+def feature_extraction(accessToken, selectedPlaylists, currentUsername):
 
     # Enter app credentials
     client_id = 'c5455611ee7e4367b44da7d1a6f3d15b' # will be deleted as soon as things work
@@ -25,23 +22,27 @@ def feature_extraction(accessToken, selectedPlaylists):
     client_credentials_manager = SpotifyClientCredentials(client_id=client_id,client_secret=client_secret)
     sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
-    # TODO get current user or pass it in
+    # // # TODO get current user or pass it in
 
     # Enter username of the Spotify User and the name of the playlist here
-    username = 'kamikazi23'
-    playlist_name = selectedPlaylists
+    username = currentUsername
+    playlist_name = json.loads(selectedPlaylists)
 
     # Get uri of playlist
     all_playlists = sp.user_playlists(username)
+    df_list = list()
+    # print(playlist_name)
     for currentPlaylist in playlist_name:
+        # print(currentPlaylist.keys())
         playlist_uri = ''
         
         for playlist in all_playlists['items']:
-            if playlist_name == playlist['name']:
+            if currentPlaylist == playlist['name']:
                 playlist_uri = playlist['uri'] 
                 
         if playlist_uri == '':
-            print('Please make your playlist public')
+            pass
+            # print('Please make the playlist ', currentPlaylist, ' public')
         else:
             # Get info from uri
             username2 = playlist_uri.split(':')[1]
@@ -85,3 +86,14 @@ def feature_extraction(accessToken, selectedPlaylists):
             # features
             all_features_df = features_df.merge(audiofeatures_df, how='inner', on=['id'])
             all_features_df.rename(columns={'id':'playlist_id'},inplace=True)
+            df_list.append(all_features_df)
+    
+    concat_features_df = pd.concat(df_list)
+    concat_features_df.reset_index(drop=True,inplace=True)
+    print(concat_features_df)
+    if len(df_list) > 1:
+        concat_features_df = pd.concat(df_list)
+        concat_features_df.reset_index(drop=True,inplace=True)
+        return concat_features_df
+    else:
+        return all_features_df
