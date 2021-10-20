@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import {
+  Container,
   Input,
   FormControl,
   FormLabel,
@@ -23,13 +24,28 @@ const InputGrid = () => {
   const [playlists, setPlaylists] = useState([]);
   const [checkedItems, setCheckedItems] = useState([]);
   const [token, setToken] = useState("");
-  const [results, setResults] = useState();
+  const [results, setResults] = useState([]);
+  const songs = [];
 
   useEffect(async () => {
     if (localStorage.getItem("accessToken")) {
       setToken(localStorage.getItem("accessToken"));
     }
   }, []);
+
+  const createSongs = () => {
+    for (var playlist in results.data) {
+      // console.log(results.data[playlist]);
+      const tempSongs = [];
+      for (var song in results.data[playlist]) {
+        // console.log(results.data[playlist][song]);
+        tempSongs.push(results.data[playlist][song]);
+      }
+      songs.push(tempSongs);
+      console.log(songs);
+    }
+  };
+
   return (
     <>
       <SongsButton
@@ -53,7 +69,7 @@ const InputGrid = () => {
             // console.log(item);
             userSelectedPlaylists.push(playlists.items[item]);
           });
-          console.log("after sel pl", userSelectedPlaylists);
+          // console.log("after sel pl", userSelectedPlaylists);
           // console.log("before user");
           let user = await axios.get("https://api.spotify.com/v1/me", {
             headers: {
@@ -61,11 +77,11 @@ const InputGrid = () => {
             },
           });
           // console.log("after iser");
-          console.log(user.data["display_name"]);
-          console.log(token);
-          console.log(userSelectedPlaylists);
-          console.log(values.numberOfPlaylists);
-          console.log("before res");
+          // console.log(user.data["display_name"]);
+          // console.log(token);
+          // console.log(userSelectedPlaylists);
+          // console.log(values.numberOfPlaylists);
+          // console.log("before res");
           let res = await axios.post(BACKEND_URL, {
             headers: {
               "Content-Type": "application/json",
@@ -79,9 +95,9 @@ const InputGrid = () => {
           });
           console.log("after res", res);
           setResults(res);
-          if (!res) {
-            console.log("Error");
-          }
+          createSongs();
+          // console.log("res", results);
+          // setTimeout(console.log("playlists", results), 200);
           actions.setSubmitting(false);
         }}
       >
@@ -144,11 +160,6 @@ const InputGrid = () => {
           </Form>
         )}
       </Formik>
-      {/* {results !== undefined
-        ? results?.data.map((item, idx) => {
-            <p key={idx}>{item}</p>;
-          })
-        : null} */}
     </>
   );
 };
