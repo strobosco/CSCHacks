@@ -23,6 +23,7 @@ const InputGrid = () => {
   const [playlists, setPlaylists] = useState([]);
   const [checkedItems, setCheckedItems] = useState([]);
   const [token, setToken] = useState("");
+  const [results, setResults] = useState();
 
   useEffect(async () => {
     if (localStorage.getItem("accessToken")) {
@@ -46,18 +47,25 @@ const InputGrid = () => {
           // console.log(values);
           // console.log(checkedItems);
           // console.log(playlists.items);
-          let selectedPlaylists = [];
+          // console.log("befor sel pl");
+          let userSelectedPlaylists = [];
           checkedItems.map((item) => {
             // console.log(item);
-            selectedPlaylists.push(playlists.items[item]);
+            userSelectedPlaylists.push(playlists.items[item]);
           });
-          // console.log(selectedPlaylists);
+          console.log("after sel pl", userSelectedPlaylists);
+          // console.log("before user");
           let user = await axios.get("https://api.spotify.com/v1/me", {
             headers: {
               Authorization: "Bearer " + token,
             },
           });
-          // console.log(user.data["display_name"]);
+          // console.log("after iser");
+          console.log(user.data["display_name"]);
+          console.log(token);
+          console.log(userSelectedPlaylists);
+          console.log(values.numberOfPlaylists);
+          console.log("before res");
           let res = await axios.post(BACKEND_URL, {
             headers: {
               "Content-Type": "application/json",
@@ -65,9 +73,12 @@ const InputGrid = () => {
             data: {
               username: user.data["display_name"],
               accessToken: token,
-              selectedPlaylists: JSON.stringify(selectedPlaylists),
+              selectedPlaylists: JSON.stringify(userSelectedPlaylists),
+              userNumberOfPlaylists: values.numberOfPlaylists,
             },
           });
+          console.log("after res", res);
+          setResults(res);
           if (!res) {
             console.log("Error");
           }
@@ -133,6 +144,11 @@ const InputGrid = () => {
           </Form>
         )}
       </Formik>
+      {/* {results !== undefined
+        ? results?.data.map((item, idx) => {
+            <p key={idx}>{item}</p>;
+          })
+        : null} */}
     </>
   );
 };

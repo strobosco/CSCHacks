@@ -1,13 +1,18 @@
-# CSC Hacks Sample Project Repo
+# Spotify Playlist Creation & K-Means Clustering
 
 ## Project Description
 
-Our project is centered around a clustering algorithm for songs that takes in songs users liked on Spotify and listening times and outputs a set of recommended playlists. The approach we are currently thinking of using is a K-Means clustering algorithm that will allow the user to choose the number of playlists they want.
+Our project is centered around a clustering algorithm for songs belonging to a users
+  playlists, wether it be 1 or 10. We will then output the recommended playlists per
+  our clustering algorithm. We are currently thinking of implementing a K-Means clustering
+  algorithm that allows the user to choose the number of playlists they want.
 
 The challenges we anticipate in developing a properly functioning model are:
 
-  1. Data collection -> collecting a varied and representative dataset
-  2. Train our model using different "personalities" as to not overfit to particular audiences
+  1. User authorization to interact with the Spotify Web API
+  2. Data extraction, both in gathering the data and choosing what data to use, hence point 3.
+  3. Feature extraction and engineering
+  4. Connecting a React-based frontend to a Flask API
 
 The skills we will need to learn are:
 
@@ -15,6 +20,7 @@ The skills we will need to learn are:
   2. Feature Extraction to improve accuracy and reduce training time
   3. Model building
   4. Key Performance Indicators to measure our progress
+  5. Full stack web development
 
 
 ## Team Information
