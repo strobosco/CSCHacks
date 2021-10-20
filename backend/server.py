@@ -1,9 +1,11 @@
-from flask import Flask, request
+from flask import Flask, request, jsonify
 from dotenv import load_dotenv
 load_dotenv()
 from flask_cors import CORS
+import json
 
 from feature_extraction import feature_extraction
+from clustering import create_clust
 
 app = Flask(__name__)
 CORS(app)
@@ -14,8 +16,14 @@ def cluster():
   accessToken = data['accessToken']
   playlists = data['selectedPlaylists']
   username = data['username']
-  results =  feature_extraction(accessToken=accessToken, selectedPlaylists=playlists, currentUsername=username)
-  return "Request received"
+  numberOfPlaylists = data['userNumberOfPlaylists']
+  results, not_added =  feature_extraction(accessToken=accessToken, selectedPlaylists=playlists, currentUsername=username)
+  # print('results: ', results, 'results2:', not_added)
+  clusters = create_clust(results, numberOfPlaylists, 1, False)
+  returnDict = dict()
+  for idx, cluster in enumerate(clusters):
+    returnDict[idx] = cluster
+  return json.dumps(returnDict)
 
 """
 Returned data will be:
