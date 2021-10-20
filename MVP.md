@@ -30,6 +30,22 @@ Navigate to ```backend/```and run ```flask run```. This will initialize the Flas
 #### 4. 
 Navigate to ```http://localhost:3000``` and click the **Spotify Login** button in the upper right-hand corner and authorize the app to use the Spotify Web API.
 
+
+#### 5. 
+Click the "Get Playlists!" button and select which playlists to cluster. Their is currently a bug were the checlist does not toggle, it only applies and does not disappear. The logic is working, the check state is simply not updating.
+
+#### 6.
+Enter how many playlists you would like to create
+
+#### 7.
+Enter the base name for the new playlists (to be implemented)
+
+#### 8.
+As of now the output is only shown in the developer console. However, the final product will have a view in which the user can see the new playlists and choose which to create on their Spotify account.
+
+### Disclaimer
+We are currently aware of a bug that happens once the user submits their request initially. You may be forced to issue the request again in order to view results. We are working on it!
+
 ---
 ## Feedback
 If you have any suggestions, comments or improvements visit our ["Suggestions, Comments, and Improvements"](https://github.com/strobosco/CSCHacks/issues/11) issue page. If you ran into any bugs visit out ["Bugs"](https://github.com/strobosco/CSCHacks/issues?q=is%3Aissue+is%3Aopen+label%3Abug) issue page.
