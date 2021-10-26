@@ -17,6 +17,7 @@ import {
   validateNumberOfPlaylists,
 } from "../utils/inputGridValidation";
 import SongsButton from "./SongsButton";
+import SongsList from "./SongsList";
 
 const BACKEND_URL = "/cluster";
 
@@ -24,8 +25,9 @@ const InputGrid = () => {
   const [playlists, setPlaylists] = useState([]);
   const [checkedItems, setCheckedItems] = useState([]);
   const [token, setToken] = useState("");
-  const [results, setResults] = useState([]);
-  const songs = [];
+  const [childSongs, setChildSongs] = useState([]);
+  const [found, setFound] = useState(false);
+  var results = [];
 
   useEffect(async () => {
     if (localStorage.getItem("accessToken")) {
@@ -33,17 +35,19 @@ const InputGrid = () => {
     }
   }, []);
 
-  const createSongs = () => {
-    for (var playlist in results.data) {
-      // console.log(results.data[playlist]);
-      const tempSongs = [];
-      for (var song in results.data[playlist]) {
-        // console.log(results.data[playlist][song]);
-        tempSongs.push(results.data[playlist][song]);
+  const createSongs = async () => {
+    setChildSongs([]);
+    // console.log(Object.keys(results[0]));
+    for (var playlist in results[0]) {
+      var tempSongs = [];
+      for (var song in results[0][playlist]) {
+        tempSongs.push(results[0][playlist][song]);
       }
-      songs.push(tempSongs);
-      console.log(songs);
+      // console.log(tempSongs);
+      setChildSongs((childSongs) => [...childSongs, tempSongs]);
     }
+    // console.log(childSongs);
+    // childSongs.map((song) => song.map((playlist) => console.log(playlist)));
   };
 
   return (
@@ -60,28 +64,18 @@ const InputGrid = () => {
           baseName: "",
         }}
         onSubmit={async (values, actions) => {
-          // console.log(values);
-          // console.log(checkedItems);
-          // console.log(playlists.items);
-          // console.log("befor sel pl");
+          results = [];
           let userSelectedPlaylists = [];
           checkedItems.map((item) => {
             // console.log(item);
             userSelectedPlaylists.push(playlists.items[item]);
           });
-          // console.log("after sel pl", userSelectedPlaylists);
-          // console.log("before user");
           let user = await axios.get("https://api.spotify.com/v1/me", {
             headers: {
               Authorization: "Bearer " + token,
             },
           });
-          // console.log("after iser");
-          // console.log(user.data["display_name"]);
-          // console.log(token);
-          // console.log(userSelectedPlaylists);
-          // console.log(values.numberOfPlaylists);
-          // console.log("before res");
+
           let res = await axios.post(BACKEND_URL, {
             headers: {
               "Content-Type": "application/json",
@@ -93,11 +87,9 @@ const InputGrid = () => {
               userNumberOfPlaylists: values.numberOfPlaylists,
             },
           });
-          console.log("after res", res);
-          setResults(res);
-          createSongs();
-          // console.log("res", results);
-          // setTimeout(console.log("playlists", results), 200);
+          results.push(res.data);
+          await createSongs();
+          setFound(true);
           actions.setSubmitting(false);
         }}
       >
@@ -160,6 +152,7 @@ const InputGrid = () => {
           </Form>
         )}
       </Formik>
+      {found && <SongsList songs={childSongs} />}
     </>
   );
 };
