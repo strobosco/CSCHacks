@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { Container, Flex, VStack } from "@chakra-ui/react";
 
 import InputGrid from "./InputGrid";
+import SongsList from "./SongsList";
 
 const IntroView = () => {
+  const [playlists, setPlaylists] = useState([]);
+
   return (
     <Container p={0} maxW="100%" width="80%" className="intro-container">
       <Flex>
@@ -19,9 +22,10 @@ const IntroView = () => {
           </div>
         </VStack>
         <VStack alignItems="flex-start" spacing={10} className="vertical-stack">
-          <InputGrid />
+          <InputGrid playlists={playlists} setPlaylists={setPlaylists} />
         </VStack>
       </Flex>
+      <SongsList songs={playlists} />
     </Container>
   );
 };

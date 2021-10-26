@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 
 import {
-  Container,
   Input,
   FormControl,
   FormLabel,
@@ -21,11 +20,11 @@ import SongsList from "./SongsList";
 
 const BACKEND_URL = "/cluster";
 
-const InputGrid = () => {
-  const [playlists, setPlaylists] = useState([]);
+const InputGrid = ({ playlists, setPlaylists }) => {
+  const [userPlaylists, setUserPlaylists] = useState([]);
   const [checkedItems, setCheckedItems] = useState([]);
   const [token, setToken] = useState("");
-  const [childSongs, setChildSongs] = useState([]);
+  // const [childSongs, setChildSongs] = useState([]);
   const [found, setFound] = useState(false);
   var results = [];
 
@@ -36,18 +35,16 @@ const InputGrid = () => {
   }, []);
 
   const createSongs = async () => {
-    setChildSongs([]);
-    // console.log(Object.keys(results[0]));
+    // setChildSongs([]);
+    setPlaylists([]);
     for (var playlist in results[0]) {
       var tempSongs = [];
       for (var song in results[0][playlist]) {
         tempSongs.push(results[0][playlist][song]);
       }
-      // console.log(tempSongs);
-      setChildSongs((childSongs) => [...childSongs, tempSongs]);
+      // setChildSongs((childSongs) => [...childSongs, tempSongs]);
+      setPlaylists((playlists) => [...playlists, tempSongs]);
     }
-    // console.log(childSongs);
-    // childSongs.map((song) => song.map((playlist) => console.log(playlist)));
   };
 
   return (
@@ -55,8 +52,8 @@ const InputGrid = () => {
       <SongsButton
         checkedItems={checkedItems}
         setCheckedItems={setCheckedItems}
-        playlists={playlists}
-        setPlaylists={setPlaylists}
+        playlists={userPlaylists}
+        setPlaylists={setUserPlaylists}
       />
       <Formik
         initialValues={{
@@ -68,7 +65,7 @@ const InputGrid = () => {
           let userSelectedPlaylists = [];
           checkedItems.map((item) => {
             // console.log(item);
-            userSelectedPlaylists.push(playlists.items[item]);
+            userSelectedPlaylists.push(userPlaylists.items[item]);
           });
           let user = await axios.get("https://api.spotify.com/v1/me", {
             headers: {
@@ -152,7 +149,7 @@ const InputGrid = () => {
           </Form>
         )}
       </Formik>
-      {found && <SongsList songs={childSongs} />}
+      {/* {found && <SongsList songs={playlists} />} */}
     </>
   );
 };
