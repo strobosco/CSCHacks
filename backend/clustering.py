@@ -53,14 +53,16 @@ def create_clust(dataset, num_clust, pca_percent, create):
     kmeans = KMeans(n_clusters=num_clust, init='k-means++', random_state=42)
     y_kmeans = kmeans.fit_predict(x)
     
+    uri_clusters = []
     clusters = [] # list of songs in cluster, where index + 1 = numebr of 
     for i in range(num_clust):
         clusters.append(dataset.iloc[:,1][y_kmeans==i].tolist())
+        uri_clusters.append(dataset.iloc[:,15][y_kmeans==i].tolist())
     
     # if create == True:
     #     playlist_exp.make(dataset,y_kmeans,7,"Test")
 
-    return clusters
+    return clusters, uri_clusters
     
         
 

@@ -72,20 +72,23 @@ export const globals = {
     boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.5)",
     borderRadius: "8px",
   },
-  "playlist-div": {
-    mt: 8,
-    p: 8,
-    fontSize: "18px",
-  },
-  "playlist-text": {
+  ".playlist-div": {
+    width: "80%",
     h1: {
+      verticalAlign: "middle",
       fontWeight: "bold",
-      mt: 8,
-      p: 8,
+      fontSize: "24px",
+      padding: 3,
+    },
+    h2: {
+      verticalAlign: "middle",
+      fontSize: "20px",
+      padding: 3,
     },
     p: {
-      mt: 8,
-      p: 8,
+      verticalAlign: "middle",
+      fontSize: "18px",
+      padding: 3,
     },
   },
 };

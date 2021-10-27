@@ -19,7 +19,7 @@ import SongsButton from "./SongsButton";
 
 const BACKEND_URL = "/cluster";
 
-const InputGrid = ({ setPlaylists, setRootName }) => {
+const InputGrid = ({ setPlaylists, setRootName, setUris }) => {
   const [userPlaylists, setUserPlaylists] = useState([]);
   const [checkedItems, setCheckedItems] = useState([]);
   const [token, setToken] = useState("");
@@ -32,14 +32,21 @@ const InputGrid = ({ setPlaylists, setRootName }) => {
   }, []);
 
   const createSongs = async () => {
-    // setChildSongs([]);
     setPlaylists([]);
-    for (var playlist in results[0]) {
+    for (var playlist in results[0].playlists) {
       var tempSongs = [];
-      for (var song in results[0][playlist]) {
-        tempSongs.push(results[0][playlist][song]);
+      for (var song in results[0].playlists[playlist]) {
+        tempSongs.push(results[0].playlists[playlist][song]);
       }
       setPlaylists((playlists) => [...playlists, tempSongs]);
+    }
+    setUris([]);
+    for (var playlist in results[0].uris) {
+      var tempUris = [];
+      for (var song in results[0].uris[playlist]) {
+        tempUris.push(results[0].uris[playlist][song]);
+      }
+      setUris((uris) => [...uris, tempUris]);
     }
   };
 
@@ -51,6 +58,7 @@ const InputGrid = ({ setPlaylists, setRootName }) => {
         playlists={userPlaylists}
         setPlaylists={setUserPlaylists}
       />
+      <h1 className="step-element">3. Insert data:</h1>
       <Formik
         initialValues={{
           numberOfPlaylists: "",
@@ -80,7 +88,9 @@ const InputGrid = ({ setPlaylists, setRootName }) => {
               userNumberOfPlaylists: values.numberOfPlaylists,
             },
           });
+          // console.log(res);
           results.push(res.data);
+          // console.log(results[0].playlists);
           await createSongs();
           actions.setSubmitting(false);
         }}

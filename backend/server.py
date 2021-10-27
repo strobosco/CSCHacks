@@ -19,10 +19,15 @@ def cluster():
   numberOfPlaylists = data['userNumberOfPlaylists']
   results, not_added =  feature_extraction(accessToken=accessToken, selectedPlaylists=playlists, currentUsername=username)
   # print('results: ', results, 'results2:', not_added)
-  clusters = create_clust(results, numberOfPlaylists, 1, False)
+  clusters, uri_clusters = create_clust(results, numberOfPlaylists, 1, False)
+  playlistDict = dict()
+  uriDict = dict()
   returnDict = dict()
   for idx, cluster in enumerate(clusters):
-    returnDict[idx] = cluster
+    playlistDict[idx] = cluster
+  for idx, uri in enumerate(uri_clusters):
+    uriDict[idx] = uri
+  returnDict = {"playlists": playlistDict, "uris": uriDict}
   return json.dumps(returnDict)
 
 """
