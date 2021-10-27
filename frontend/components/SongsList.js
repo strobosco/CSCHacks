@@ -1,12 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 
-const SongsList = (props) => {
+import { Container } from "@chakra-ui/react";
+
+const SongsList = ({ songs, rootName }) => {
   return (
-    <div>
-      {props.songs.map((s) => (
-        <p>{s}</p>
+    <Container maxW="100%" width="100%" className="playlist-container">
+      {songs.map((s, idx) => (
+        <div className="playlist-div">
+          <h1
+            key={`${idx}_h1`}
+            className="playlist-text"
+          >{`${rootName}_${idx}`}</h1>
+          <p key={idx} className="playlist-text">
+            {s.join(", ")}
+          </p>
+        </div>
       ))}
-    </div>
+    </Container>
   );
 };
 

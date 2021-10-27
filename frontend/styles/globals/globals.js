@@ -61,4 +61,31 @@ export const globals = {
     boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.5)",
     borderRadius: "8px",
   },
+  ".playlist-container": {
+    my: 8,
+    py: 8,
+    width: "80%",
+    mx: "auto",
+    bg: "secondary",
+    color: "white",
+    maxWidth: "100%",
+    boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.5)",
+    borderRadius: "8px",
+  },
+  "playlist-div": {
+    mt: 8,
+    p: 8,
+    fontSize: "18px",
+  },
+  "playlist-text": {
+    h1: {
+      fontWeight: "bold",
+      mt: 8,
+      p: 8,
+    },
+    p: {
+      mt: 8,
+      p: 8,
+    },
+  },
 };

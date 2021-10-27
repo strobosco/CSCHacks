@@ -16,16 +16,13 @@ import {
   validateNumberOfPlaylists,
 } from "../utils/inputGridValidation";
 import SongsButton from "./SongsButton";
-import SongsList from "./SongsList";
 
 const BACKEND_URL = "/cluster";
 
-const InputGrid = ({ playlists, setPlaylists }) => {
+const InputGrid = ({ setPlaylists, setRootName }) => {
   const [userPlaylists, setUserPlaylists] = useState([]);
   const [checkedItems, setCheckedItems] = useState([]);
   const [token, setToken] = useState("");
-  // const [childSongs, setChildSongs] = useState([]);
-  const [found, setFound] = useState(false);
   var results = [];
 
   useEffect(async () => {
@@ -42,7 +39,6 @@ const InputGrid = ({ playlists, setPlaylists }) => {
       for (var song in results[0][playlist]) {
         tempSongs.push(results[0][playlist][song]);
       }
-      // setChildSongs((childSongs) => [...childSongs, tempSongs]);
       setPlaylists((playlists) => [...playlists, tempSongs]);
     }
   };
@@ -61,10 +57,10 @@ const InputGrid = ({ playlists, setPlaylists }) => {
           baseName: "",
         }}
         onSubmit={async (values, actions) => {
+          setRootName(values.baseName);
           results = [];
           let userSelectedPlaylists = [];
           checkedItems.map((item) => {
-            // console.log(item);
             userSelectedPlaylists.push(userPlaylists.items[item]);
           });
           let user = await axios.get("https://api.spotify.com/v1/me", {
@@ -86,7 +82,6 @@ const InputGrid = ({ playlists, setPlaylists }) => {
           });
           results.push(res.data);
           await createSongs();
-          setFound(true);
           actions.setSubmitting(false);
         }}
       >
@@ -149,7 +144,6 @@ const InputGrid = ({ playlists, setPlaylists }) => {
           </Form>
         )}
       </Formik>
-      {/* {found && <SongsList songs={playlists} />} */}
     </>
   );
 };

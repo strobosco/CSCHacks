@@ -7,6 +7,7 @@ import SongsList from "./SongsList";
 
 const IntroView = () => {
   const [playlists, setPlaylists] = useState([]);
+  const [rootName, setRootName] = useState("");
 
   return (
     <Container p={0} maxW="100%" width="80%" className="intro-container">
@@ -22,10 +23,10 @@ const IntroView = () => {
           </div>
         </VStack>
         <VStack alignItems="flex-start" spacing={10} className="vertical-stack">
-          <InputGrid playlists={playlists} setPlaylists={setPlaylists} />
+          <InputGrid setPlaylists={setPlaylists} setRootName={setRootName} />
         </VStack>
       </Flex>
-      <SongsList songs={playlists} />
+      <SongsList songs={playlists} rootName={rootName} />
     </Container>
   );
 };
