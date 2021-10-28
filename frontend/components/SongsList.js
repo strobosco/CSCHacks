@@ -6,7 +6,6 @@ import createPlaylists from "../utils/CreatePlaylists";
 
 const SongsList = ({ songs, rootName, uris }) => {
   const [token, setToken] = useState("");
-
   useEffect(async () => {
     if (localStorage.getItem("accessToken")) {
       setToken(localStorage.getItem("accessToken"));
@@ -26,12 +25,9 @@ const SongsList = ({ songs, rootName, uris }) => {
               <p key={`${idx}_p`}>{s.join(", ")}</p>
             </div>
             <Button
-              onClick={createPlaylists(
-                token,
-                `${rootName}_${idx + 1}`,
-                songs,
-                uris
-              )}
+              onClick={() => {
+                createPlaylists(token, `${rootName}_${idx + 1}`, songs, uris);
+              }}
             >
               Create
             </Button>

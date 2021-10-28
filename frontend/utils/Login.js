@@ -8,11 +8,12 @@ const REDIRECT_URL = "http://localhost:3000/redirect";
 // ];
 const SCOPES = [
   "user-library-read",
-  "playlist-read-private",
   "playlist-read-public",
   "playlist-read-private",
   "user-read-private",
   "user-read-email",
+  "playlist-modify-public",
+  "playlist-modify-private",
 ];
 
 const SCOPES_URL_PARAM = SCOPES.join("%20");
