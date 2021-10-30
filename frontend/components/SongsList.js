@@ -26,7 +26,12 @@ const SongsList = ({ songs, rootName, uris }) => {
             </div>
             <Button
               onClick={() => {
-                createPlaylists(token, `${rootName}_${idx + 1}`, songs, uris);
+                createPlaylists(
+                  token,
+                  `${rootName}_${idx + 1}`,
+                  songs,
+                  uris[idx]
+                );
               }}
             >
               Create
