@@ -118,7 +118,7 @@ const InputGrid = ({ setPlaylists, setRootName, setUris }) => {
                     type="number"
                     placeholder="1, 2, 3, ..."
                   />
-                  <FormErrorMessage>
+                  <FormErrorMessage color="error">
                     {form.errors.numberOfPlaylists}
                   </FormErrorMessage>
                 </FormControl>
@@ -139,13 +139,15 @@ const InputGrid = ({ setPlaylists, setRootName, setUris }) => {
                     type="text"
                     placeholder="My New Playlist..."
                   />
-                  <FormErrorMessage>{form.errors.baseName}</FormErrorMessage>
+                  <FormErrorMessage color="error">
+                    {form.errors.baseName}
+                  </FormErrorMessage>
                 </FormControl>
               )}
             </Field>
             <Button
               mt={4}
-              bg="highlight"
+              bg="buttons"
               isLoading={props.isSubmitting}
               type="submit"
             >

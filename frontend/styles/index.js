@@ -14,9 +14,9 @@ export const newTheme = extendTheme({
   },
   colors: {
     primary: "#545F66",
-    secondary: "#587B8E",
-    highlight: "#9AAEBB",
-    warning: "#C98128",
+    secondary: "#5E6876",
+    buttons: "#45A49D",
+    error: "#C93028",
   },
   components: {
     Button,

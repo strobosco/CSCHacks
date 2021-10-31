@@ -25,6 +25,7 @@ const SongsList = ({ songs, rootName, uris }) => {
               <p key={`${idx}_p`}>{s.join(", ")}</p>
             </div>
             <Button
+              bg="buttons"
               onClick={() => {
                 createPlaylists(
                   token,
@@ -37,7 +38,7 @@ const SongsList = ({ songs, rootName, uris }) => {
               Create
             </Button>
           </Flex>
-          <Divider />
+          <Divider width="60%" mx="auto" my={6} />
         </>
       ))}
     </Container>

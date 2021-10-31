@@ -36,7 +36,9 @@ const SongsButton = ({
       <h1 className="step-element">Steps:</h1>
       <Flex flexDir="row" alignItems="center">
         <h1 className="step-element">1.</h1>
-        <Button onClick={handleGetPlaylists}>Get my playlists!</Button>
+        <Button bg="buttons" onClick={handleGetPlaylists}>
+          Get my playlists!
+        </Button>
       </Flex>
       <Flex flexDir="column" alignContent="flex-start">
         <h1 className="step-element">
