@@ -36,10 +36,11 @@ def visualize_cluster(data):
     plt.show()
  
     
-def create_clust(dataset, num_clust, pca_percent, create):
+def create_clust(dataset, num_clust, pca_percent, categories):
     # read dataset
     # dataset = pd.read_csv(fname)
-    x = dataset[['danceability', 'energy', 'loudness', 'speechiness', 'acousticness', 'instrumentalness', 'liveness', 'valence', 'tempo']] # column 5-15, not yet including duration or time signature
+    # x = dataset[['danceability', 'energy', 'loudness', 'speechiness', 'acousticness', 'instrumentalness', 'liveness', 'valence', 'tempo']] # column 5-15, not yet including duration or time signature
+    x = dataset[categories]
 
     # scale values
     min_max_scaler = preprocessing.MinMaxScaler()

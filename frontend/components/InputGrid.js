@@ -24,6 +24,17 @@ const InputGrid = ({ setPlaylists, setRootName, setUris }) => {
   const [checkedItems, setCheckedItems] = useState([]);
   const [token, setToken] = useState("");
   var results = [];
+  const completeParameters = [
+    "danceability",
+    "energy",
+    "loudness",
+    "speechiness",
+    "acousticness",
+    "instrumentalness",
+    "liveness",
+    "valence",
+    "tempo",
+  ];
 
   useEffect(async () => {
     if (localStorage.getItem("accessToken")) {
@@ -63,8 +74,10 @@ const InputGrid = ({ setPlaylists, setRootName, setUris }) => {
         initialValues={{
           numberOfPlaylists: "",
           baseName: "",
+          parameters: [],
         }}
         onSubmit={async (values, actions) => {
+          console.log(values.parameters);
           setRootName(values.baseName);
           results = [];
           let userSelectedPlaylists = [];
@@ -86,6 +99,7 @@ const InputGrid = ({ setPlaylists, setRootName, setUris }) => {
               accessToken: token,
               selectedPlaylists: JSON.stringify(userSelectedPlaylists),
               userNumberOfPlaylists: values.numberOfPlaylists,
+              categories: values.parameters,
             },
           });
           // console.log(res);
@@ -145,6 +159,19 @@ const InputGrid = ({ setPlaylists, setRootName, setUris }) => {
                 </FormControl>
               )}
             </Field>
+            <div className="parameter-div">
+              {completeParameters?.map((item, idx) => (
+                <label key={`${idx}_label`} className="label">
+                  <Field
+                    type="checkbox"
+                    name="parameters"
+                    value={`${item}`}
+                    className="parameter-input"
+                  />
+                  {item}
+                </label>
+              ))}
+            </div>
             <Button
               mt={4}
               bg="buttons"

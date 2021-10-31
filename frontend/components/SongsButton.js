@@ -49,7 +49,6 @@ const SongsButton = ({
           ? playlists.items.map((item, idx) => (
               <Checkbox
                 key={idx}
-                isChecked={checkedItems.indexOf(idx) != -1}
                 onChange={() => setCheckedItems([...checkedItems, idx])}
               >
                 {item.name}
