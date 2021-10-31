@@ -13,7 +13,7 @@ const IntroView = () => {
   const [rootName, setRootName] = useState("");
 
   return (
-    <Container p={0} maxW="100%" width="80%" className="intro-container">
+    <Container maxW="100%" width="80%" className="intro-container">
       <Flex>
         <VStack
           alignItems="flex-start"

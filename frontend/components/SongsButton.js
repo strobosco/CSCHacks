@@ -11,10 +11,13 @@ const SongsButton = ({
   setPlaylists,
 }) => {
   const [token, setToken] = useState("");
+  const [tokenError, setTokenError] = useState("");
 
   useEffect(() => {
     if (localStorage.getItem("accessToken")) {
       setToken(localStorage.getItem("accessToken"));
+    } else {
+      setTokenError("Please login before continuing!");
     }
   }, []);
 
@@ -25,10 +28,7 @@ const SongsButton = ({
         Authorization: "Bearer " + token,
       },
     });
-    // console.log(res);
     setPlaylists(res.data);
-    // playlists?.items.map((item) => console.log(item.tracks));
-    // !!!! PLAYLIST TRACKS ARE STORED IN SONGS.ITEMS.MAP
   };
 
   return (
@@ -36,7 +36,10 @@ const SongsButton = ({
       <h1 className="step-element">Steps:</h1>
       <Flex flexDir="row" alignItems="center">
         <h1 className="step-element">1.</h1>
-        <Button onClick={handleGetPlaylists}>Get my playlists!</Button>
+        <Button bg="buttons" onClick={handleGetPlaylists}>
+          Get my playlists!
+        </Button>
+        <p className="token-error">{tokenError}</p>
       </Flex>
       <Flex flexDir="column" alignContent="flex-start">
         <h1 className="step-element">

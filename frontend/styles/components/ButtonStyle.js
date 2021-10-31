@@ -8,11 +8,9 @@ export const ButtonStyle = {
   // styles for different visual variants ("outline", "solid")
   variants: {
     "button-right": {
-      position: "absolute",
-      right: "0",
+      ml: "auto",
       mr: "10",
-      bg: "highlight",
-      color: "white",
+      bg: "buttons",
       _hover: {
         bg: whiten("highlight", 20),
       },
