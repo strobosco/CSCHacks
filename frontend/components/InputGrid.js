@@ -6,7 +6,6 @@ import {
   FormLabel,
   FormErrorMessage,
   Button,
-  Checkbox,
 } from "@chakra-ui/react";
 import { Formik, Form, Field } from "formik";
 
@@ -160,12 +159,19 @@ const InputGrid = ({ setPlaylists, setRootName, setUris }) => {
                 </FormControl>
               )}
             </Field>
-            {completeParameters?.map((item, idx) => (
-              <label key={`${idx}_label`}>
-                <Field type="checkbox" name="parameters" value={`${item}`} />
-                {item}
-              </label>
-            ))}
+            <div className="parameter-div">
+              {completeParameters?.map((item, idx) => (
+                <label key={`${idx}_label`} className="label">
+                  <Field
+                    type="checkbox"
+                    name="parameters"
+                    value={`${item}`}
+                    className="parameter-input"
+                  />
+                  {item}
+                </label>
+              ))}
+            </div>
             <Button
               mt={4}
               bg="buttons"

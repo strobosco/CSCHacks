@@ -2,6 +2,10 @@ export const globals = {
   "*": {
     fontFamily: "Gill Sans",
   },
+  ".label": {
+    backgroundColor: "secondary",
+    mr: 5,
+  },
   ".nav-bar": {
     width: "80%",
     mt: 8,
@@ -50,6 +54,9 @@ export const globals = {
   },
   ".parameter-div": {
     my: 5,
+  },
+  ".parameter-input": {
+    mr: 1,
   },
   ".footer-container": {
     my: 8,
