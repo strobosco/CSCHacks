@@ -16,16 +16,15 @@ const SongsList = ({ songs, rootName, uris }) => {
     <Container maxW="100%" width="100%" className="playlist-container">
       {songs.map((s, idx) => (
         <>
-          <Flex key={`${idx}_flex`} py={3} flexDir="row">
+          <Flex py={3} flexDir="row">
             <div key={`${idx}_div`} className="playlist-div">
-              <Flex key={`${idx}_title`} flexDir="row">
+              <Flex flexDir="row">
                 <h1 key={`${idx}_h1`}>{`${rootName}_${idx + 1}`}</h1>
-                <h2 key={`${idx}_h2`}>{s.length} songs</h2>
+                <h2>{s.length} songs</h2>
               </Flex>
               <p key={`${idx}_p`}>{s.join(", ")}</p>
             </div>
             <Button
-              key={`${idx}_b`}
               bg="buttons"
               onClick={() => {
                 createPlaylists(
@@ -39,7 +38,7 @@ const SongsList = ({ songs, rootName, uris }) => {
               Create
             </Button>
           </Flex>
-          <Divider key={`${idx}_divider`} width="60%" mx="auto" my={6} />
+          <Divider width="60%" mx="auto" my={6} />
         </>
       ))}
     </Container>
