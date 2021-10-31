@@ -16,6 +16,11 @@ export const globals = {
     fontSize: "30px",
     m: "5px",
   },
+  ".token-error": {
+    mr: "5px",
+    ml: "auto",
+    color: "error",
+  },
   ".intro-text": {
     h2: {
       fontSize: "24px",
