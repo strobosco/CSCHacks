@@ -32,7 +32,7 @@ Navigate to ```http://localhost:3000``` and click the **Spotify Login** button i
 
 
 #### 5. 
-Click the "Get Playlists!" button and select which playlists to cluster. Their is currently a bug were the checlist does not toggle, it only applies and does not disappear. The logic is working, the check state is simply not updating.
+Click the "Get Playlists!" button and select which playlists to cluster. Their is currently a bug were the checklist does not toggle, it only applies and does not disappear. The logic is working, the check state is simply not updating.
 
 #### 6.
 Enter how many playlists you would like to create
