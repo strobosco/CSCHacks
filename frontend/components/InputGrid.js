@@ -6,6 +6,7 @@ import {
   FormLabel,
   FormErrorMessage,
   Button,
+  Checkbox,
 } from "@chakra-ui/react";
 import { Formik, Form, Field } from "formik";
 
@@ -24,6 +25,17 @@ const InputGrid = ({ setPlaylists, setRootName, setUris }) => {
   const [checkedItems, setCheckedItems] = useState([]);
   const [token, setToken] = useState("");
   var results = [];
+  const completeParameters = [
+    "danceability",
+    "energy",
+    "loudness",
+    "speechiness",
+    "acousticness",
+    "instrumentalness",
+    "liveness",
+    "valence",
+    "tempo",
+  ];
 
   useEffect(async () => {
     if (localStorage.getItem("accessToken")) {
@@ -63,8 +75,10 @@ const InputGrid = ({ setPlaylists, setRootName, setUris }) => {
         initialValues={{
           numberOfPlaylists: "",
           baseName: "",
+          parameters: [],
         }}
         onSubmit={async (values, actions) => {
+          console.log(values.parameters);
           setRootName(values.baseName);
           results = [];
           let userSelectedPlaylists = [];
@@ -86,6 +100,7 @@ const InputGrid = ({ setPlaylists, setRootName, setUris }) => {
               accessToken: token,
               selectedPlaylists: JSON.stringify(userSelectedPlaylists),
               userNumberOfPlaylists: values.numberOfPlaylists,
+              categories: values.parameters,
             },
           });
           // console.log(res);
@@ -145,6 +160,12 @@ const InputGrid = ({ setPlaylists, setRootName, setUris }) => {
                 </FormControl>
               )}
             </Field>
+            {completeParameters?.map((item, idx) => (
+              <label key={`${idx}_label`}>
+                <Field type="checkbox" name="parameters" value={`${item}`} />
+                {item}
+              </label>
+            ))}
             <Button
               mt={4}
               bg="buttons"

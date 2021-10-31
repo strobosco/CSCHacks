@@ -17,9 +17,10 @@ def cluster():
   playlists = data['selectedPlaylists']
   username = data['username']
   numberOfPlaylists = data['userNumberOfPlaylists']
+  categories = data['categories']
   results, not_added =  feature_extraction(accessToken=accessToken, selectedPlaylists=playlists, currentUsername=username)
   # print('results: ', results, 'results2:', not_added)
-  clusters, uri_clusters = create_clust(results, numberOfPlaylists, 1, False)
+  clusters, uri_clusters = create_clust(results, numberOfPlaylists, 1, categories=categories)
   playlistDict = dict()
   uriDict = dict()
   returnDict = dict()

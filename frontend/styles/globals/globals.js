@@ -48,6 +48,9 @@ export const globals = {
     width: "80%",
     maxWidth: "100%",
   },
+  ".parameter-div": {
+    my: 5,
+  },
   ".footer-container": {
     my: 8,
     p: 8,
