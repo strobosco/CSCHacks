@@ -104,4 +104,3 @@ dependencies:
   - zeromq=4.3.4
   - zlib=1.2.11
   - zstd=1.5.0
-prefix: /Users/niccolonobili/miniforge3/envs/hacks
