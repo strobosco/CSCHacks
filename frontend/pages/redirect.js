@@ -6,7 +6,6 @@ const getReturnedParamsFromSpotifyAuth = (hash) => {
   const stringAfterHashtag = hash.substring(1);
   const paramsInUrl = stringAfterHashtag.split("&");
   const paramsSplitUp = paramsInUrl.reduce((acc, currentValue) => {
-    console.log(currentValue);
     const [key, value] = currentValue.split("=");
     acc[key] = value;
     return acc;
@@ -23,10 +22,13 @@ const redirect = () => {
 
       localStorage.clear();
 
-      localStorage.setItem("accessToken", access_token);
-      localStorage.setItem("tokenType", token_type);
-      localStorage.setItem("expiresIn", expires_in);
-      console.log(localStorage);
+      const data = {
+        value: access_token,
+        ttl: Date.now() + expires_in * 1000,
+      };
+
+      // store data in LocalStorage
+      localStorage.setItem("accessToken", JSON.stringify(data));
 
       window.location = "/";
     }
