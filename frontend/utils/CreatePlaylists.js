@@ -27,17 +27,21 @@ const createPlaylists = async (token, playlistName, songs, uris) => {
 
   const PLAYLIST_ID = playlistCreation.data.id;
   const ADD_SONGS_URL = `https://api.spotify.com/v1/playlists/${PLAYLIST_ID}/tracks`;
-  let addingSongs = await axios.post(
-    ADD_SONGS_URL,
-    {
-      uris: uris,
-    },
-    {
-      headers: {
-        Authorization: "Bearer " + token,
+  let i = 0;
+  while (i < uris.length) {
+    let addingSongs = await axios.post(
+      ADD_SONGS_URL,
+      {
+        uris: uris.slice(i, i + 49),
       },
-    }
-  );
+      {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      }
+    );
+    i += 50;
+  }
 };
 
 export default createPlaylists;
