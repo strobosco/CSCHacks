@@ -37,9 +37,18 @@ const InputGrid = ({ setPlaylists, setRootName, setUris }) => {
   ];
 
   useEffect(async () => {
-    if (localStorage.getItem("accessToken")) {
-      setToken(localStorage.getItem("accessToken"));
+    const data = localStorage.getItem("accessToken");
+    if (data) {
+      const item = JSON.parse(data);
+      if (Date.now() > item.ttl) {
+        localStorage.removeItem("accessToken");
+      } else {
+        setToken(item.value);
+      }
     }
+    // if (localStorage.getItem("accessToken")) {
+    //   setToken(localStorage.getItem("accessToken"));
+    // }
   }, []);
 
   const createSongs = async () => {
@@ -75,9 +84,9 @@ const InputGrid = ({ setPlaylists, setRootName, setUris }) => {
           numberOfPlaylists: "",
           baseName: "",
           parameters: [],
+          toggle: false,
         }}
         onSubmit={async (values, actions) => {
-          console.log(values.parameters);
           setRootName(values.baseName);
           results = [];
           let userSelectedPlaylists = [];
@@ -99,12 +108,12 @@ const InputGrid = ({ setPlaylists, setRootName, setUris }) => {
               accessToken: token,
               selectedPlaylists: JSON.stringify(userSelectedPlaylists),
               userNumberOfPlaylists: values.numberOfPlaylists,
-              categories: values.parameters,
+              categories: values.toggle
+                ? completeParameters
+                : values.parameters,
             },
           });
-          // console.log(res);
           results.push(res.data);
-          // console.log(results[0].playlists);
           await createSongs();
           actions.setSubmitting(false);
         }}
@@ -159,7 +168,17 @@ const InputGrid = ({ setPlaylists, setRootName, setUris }) => {
                 </FormControl>
               )}
             </Field>
+            <label>Select at least one feature:</label>
             <div className="parameter-div">
+              <label key="toggle-label" className="label">
+                <Field
+                  type="checkbox"
+                  name="toggle"
+                  className="parameter-input"
+                />
+                All features
+              </label>
+              <br />
               {completeParameters?.map((item, idx) => (
                 <label key={`${idx}_label`} className="label">
                   <Field

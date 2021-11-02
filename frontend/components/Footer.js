@@ -13,6 +13,9 @@ const Footer = () => {
               <h2>Connect with us!</h2>
               <p>
                 Reach out to us with any questions, concerns, or suggestions!
+                <br />
+                Also read about what we're working on and what updates are
+                coming!
               </p>
             </div>
             <IconButton
