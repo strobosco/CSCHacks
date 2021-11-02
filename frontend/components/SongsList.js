@@ -7,8 +7,14 @@ import createPlaylists from "../utils/CreatePlaylists";
 const SongsList = ({ songs, rootName, uris }) => {
   const [token, setToken] = useState("");
   useEffect(async () => {
-    if (localStorage.getItem("accessToken")) {
-      setToken(localStorage.getItem("accessToken"));
+    const data = localStorage.getItem("accessToken");
+    if (data) {
+      const item = JSON.parse(data);
+      if (Date.now() > item.ttl) {
+        localStorage.removeItem("accessToken");
+      } else {
+        setToken(item.value);
+      }
     }
   }, []);
 

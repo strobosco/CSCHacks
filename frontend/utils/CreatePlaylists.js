@@ -2,7 +2,6 @@ import axios from "axios";
 
 const createPlaylists = async (token, playlistName, songs, uris) => {
   const DESCRIPTION = "Playlist Created from SPotify K-Means";
-  console.log(uris);
   let user = await axios.get("https://api.spotify.com/v1/me", {
     headers: {
       Authorization: "Bearer " + token,
@@ -25,10 +24,8 @@ const createPlaylists = async (token, playlistName, songs, uris) => {
       }
     )
     .catch((error) => console.log(error));
-  console.log(playlistCreation);
 
   const PLAYLIST_ID = playlistCreation.data.id;
-  console.log("uris ", uris);
   const ADD_SONGS_URL = `https://api.spotify.com/v1/playlists/${PLAYLIST_ID}/tracks`;
   let addingSongs = await axios.post(
     ADD_SONGS_URL,

@@ -4,7 +4,7 @@ export const globals = {
   },
   ".label": {
     backgroundColor: "secondary",
-    mr: 5,
+    mr: 4,
   },
   ".nav-bar": {
     width: "80%",
@@ -53,7 +53,7 @@ export const globals = {
     maxWidth: "100%",
   },
   ".parameter-div": {
-    my: 5,
+    mb: 5,
   },
   ".parameter-input": {
     mr: 1,

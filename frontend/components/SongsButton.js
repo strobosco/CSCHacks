@@ -14,11 +14,27 @@ const SongsButton = ({
   const [tokenError, setTokenError] = useState("");
 
   useEffect(() => {
-    if (localStorage.getItem("accessToken")) {
-      setToken(localStorage.getItem("accessToken"));
-    } else {
+    const data = localStorage.getItem("accessToken");
+    if (!data) {
+      // if no value exists associated with the key, return null
       setTokenError("Please login before continuing!");
+    } else {
+      const item = JSON.parse(data);
+
+      // If TTL has expired, remove the item from localStorage and return null
+      if (Date.now() > item.ttl) {
+        localStorage.removeItem("accessToken");
+        setTokenError("Token expired, sign in again!");
+      } else {
+        setToken(item.value);
+      }
     }
+
+    // if (localStorage.getItem("accessToken")) {
+    //   setToken(localStorage.getItem("accessToken"));
+    // } else {
+    //   setTokenError("Please login before continuing!");
+    // }
   }, []);
 
   const handleGetPlaylists = async () => {
