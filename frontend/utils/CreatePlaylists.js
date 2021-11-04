@@ -8,7 +8,7 @@ const createPlaylists = async (token, playlistName, songs, uris) => {
     },
   });
 
-  const CREATE_URL = `https://api.spotify.com/v1/users/${user.data["display_name"]}/playlists`;
+  const CREATE_URL = `https://api.spotify.com/v1/users/${user.data["id"]}/playlists`;
   let playlistCreation = await axios
     .post(
       CREATE_URL,
