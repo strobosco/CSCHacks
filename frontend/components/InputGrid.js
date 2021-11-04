@@ -104,7 +104,7 @@ const InputGrid = ({ setPlaylists, setRootName, setUris }) => {
               "Content-Type": "application/json",
             },
             data: {
-              username: user.data["display_name"],
+              username: user.data["id"],
               accessToken: token,
               selectedPlaylists: JSON.stringify(userSelectedPlaylists),
               userNumberOfPlaylists: values.numberOfPlaylists,
