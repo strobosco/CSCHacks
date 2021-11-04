@@ -24,7 +24,7 @@ User selects which playlists to extract and how many to create -> songs are clus
 ---
 ## Instructions
 
-As of right now the app can only be run locally. to view setup instructions refer to the [MVP](MVP.md) guide. 
+As of right now the app can only be run locally. to view setup instructions refer to the [MVP](MVP.md) guide. **However, authentication can not be run as we have submitted a request to extend the users that can authenticate that go beyond our development.**
 
 **WARNING:** the app currently functions so clicking "Create" will in fact create a playlist on your user account.
 
